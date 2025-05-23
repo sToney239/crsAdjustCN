@@ -3,23 +3,23 @@
 
 #' More accurately convert gcj02 to WGS84 coordinate system
 #' @importFrom Rcpp sourceCpp
-#' @useDynLib chinaCRS
+#' @useDynLib crsAdjustCN
 #'
 #' @param lon input longitude with gcj02 as crs
 #' @param lat input latitude with gcj02 as crs
 #' @return A numeric vector with 2 elements contining X and Y numeric vectors
 gcj_wgs_accu_ <- function(lon, lat) {
-    .Call('_chinaCRS_gcj_wgs_accu_', PACKAGE = 'chinaCRS', lon, lat)
+    .Call('_crsAdjustCN_gcj_wgs_accu_', PACKAGE = 'crsAdjustCN', lon, lat)
 }
 
 #' More accurately convert bd09 to WGS84 coordinate system
 #' @importFrom Rcpp sourceCpp
-#' @useDynLib chinaCRS
+#' @useDynLib crsAdjustCN
 #'
 #' @param lon input longitude with bd09 as crs
 #' @param lat input latitude with bd09 as crs
 #' @return A numeric vector with 2 elements contining X and Y numeric vectors
 bd_wgs_accu_ <- function(lon, lat) {
-    .Call('_chinaCRS_bd_wgs_accu_', PACKAGE = 'chinaCRS', lon, lat)
+    .Call('_crsAdjustCN_bd_wgs_accu_', PACKAGE = 'crsAdjustCN', lon, lat)
 }
 

@@ -9,4 +9,4 @@
 library(testthat)
 library(crsAdjustCN)
 
-test_check("chinaCRS")
+test_check("crsAdjustCN")

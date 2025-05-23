@@ -79,7 +79,7 @@ void gcj2wgs1(double *lng, double *lat) {
 
 //' More accurately convert gcj02 to WGS84 coordinate system
 //' @importFrom Rcpp sourceCpp
-//' @useDynLib chinaCRS
+//' @useDynLib crsAdjustCN
 //'
 //' @param lon input longitude with gcj02 as crs
 //' @param lat input latitude with gcj02 as crs
@@ -96,7 +96,7 @@ NumericVector  gcj_wgs_accu_(double lon, double lat) {
 
 //' More accurately convert bd09 to WGS84 coordinate system
 //' @importFrom Rcpp sourceCpp
-//' @useDynLib chinaCRS
+//' @useDynLib crsAdjustCN
 //'
 //' @param lon input longitude with bd09 as crs
 //' @param lat input latitude with bd09 as crs

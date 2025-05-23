@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // gcj_wgs_accu_
 NumericVector gcj_wgs_accu_(double lon, double lat);
-RcppExport SEXP _chinaCRS_gcj_wgs_accu_(SEXP lonSEXP, SEXP latSEXP) {
+RcppExport SEXP _crsAdjustCN_gcj_wgs_accu_(SEXP lonSEXP, SEXP latSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -24,7 +24,7 @@ END_RCPP
 }
 // bd_wgs_accu_
 NumericVector bd_wgs_accu_(double lon, double lat);
-RcppExport SEXP _chinaCRS_bd_wgs_accu_(SEXP lonSEXP, SEXP latSEXP) {
+RcppExport SEXP _crsAdjustCN_bd_wgs_accu_(SEXP lonSEXP, SEXP latSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,12 +36,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_chinaCRS_gcj_wgs_accu_", (DL_FUNC) &_chinaCRS_gcj_wgs_accu_, 2},
-    {"_chinaCRS_bd_wgs_accu_", (DL_FUNC) &_chinaCRS_bd_wgs_accu_, 2},
+    {"_crsAdjustCN_gcj_wgs_accu_", (DL_FUNC) &_crsAdjustCN_gcj_wgs_accu_, 2},
+    {"_crsAdjustCN_bd_wgs_accu_", (DL_FUNC) &_crsAdjustCN_bd_wgs_accu_, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_chinaCRS(DllInfo *dll) {
+RcppExport void R_init_crsAdjustCN(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

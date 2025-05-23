@@ -8,8 +8,14 @@
 [![R-CMD-check](https://github.com/sToney239/chinaCRS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sToney239/chinaCRS/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of crsAdjustCN is to transform between special coordinate
-systems in China and WGS 84, especially for `sf` objects.
+`crsAdjustCN` is to transform between special coordinate systems in
+China and WGS 84, especially for `sf` objects.
+
+The main features of this package are:
+
+- Some key functions with too many iterations implemented in C++,
+  therefor could have better performance
+- Specialization for transforming objects of the `sf` class.
 
 ## Installation
 
