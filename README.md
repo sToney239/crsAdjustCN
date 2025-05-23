@@ -49,6 +49,7 @@ deviates from the roads, which could not be right.
 library(crsAdjustCN)
 library(ggplot2)
 rosm::register_tile_source(cartolight_nolabel = "http://a.basemaps.cartocdn.com/light_nolabels/${z}/${x}/${y}.png")
+# example data
 example_car_trace = data.frame(
   lon = c(104.04259,104.09895,104.06989,104.11875, 104.11199,104.05281,104.04718,104.10675,104.10259,
           104.05986,104.07533,104.06241,104.06202,104.12592,104.08017,104.05254,104.05819,104.08698,104.07674,104.06063,104.0432,
@@ -70,9 +71,10 @@ example_car_trace = data.frame(
 ) |> 
   sf::st_as_sf(coords = c("lon","lat"),crs = 4326)
 
-
+# This step is adjusting
 example_adjusted = st_crs_adjust(example_car_trace, from = "gcj", to = "wgs")
 
+# Plots for comparison
 plot_before = ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 12,progress ="none")+
   geom_sf(data = example_car_trace,color = 'black',size = 1)+
@@ -94,6 +96,7 @@ in `gcj02` coordinate system. As you can see, after adjusting, the
 boundary of the museum fit to the surroundign better.
 
 ``` r
+# example data
 example_museum =data.frame(
   lon = c(104.028927,104.029536,104.030137,104.030167,104.030148,104.030056,104.030013,104.030116,104.030805,
           104.030901,104.031021,104.031118,104.031141,104.031059,104.031052,104.031079,104.031205,104.03144,104.031448,
@@ -108,10 +111,12 @@ example_museum =data.frame(
   sfheaders::sf_polygon() |> 
   sf::st_set_crs(4326) 
 
+
+# This step is adjusting
 example2_adjusted = example_museum |> 
   st_crs_adjust(, from = "gcj", to = "wgs")
 
-
+# Plots for comparison
 museum_before = ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 14,progress ="none")+
   geom_sf(data = example_museum,fill = "transparent",color = 'black',linetype = 2,linewidth = 1)+
