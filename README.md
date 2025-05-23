@@ -29,7 +29,7 @@ devtools::install_github("sToney239/crsAdjustCN")
 
 ## Example
 
-There is the core function in this package:
+This is the core function in this package:
 
 ``` r
 crsAdjustCN::st_crs_adjust(obj = your_sf_object, from = "gcj", to = "wgs")
@@ -119,7 +119,7 @@ example2_adjusted = example_museum |>
 museum_before = ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 14,progress ="none")+
   geom_sf(data = example_museum,fill = "transparent",color = 'black',linetype = 2,linewidth = 1)+
-  labs(title = "no adjusting")+
+  labs(title = "before adjusting")+
   scale_x_continuous(breaks = c( 104.027,104.029,104.031))
 museum_after =  ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 14,progress ="none")+
