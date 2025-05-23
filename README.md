@@ -83,7 +83,9 @@ plot_after = ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 12,progress ="none")+
   geom_sf(data = example_adjusted,color = 'black',size = 1)+
   labs(title = "after adjusting")+
-  scale_x_continuous(breaks = c(104.04, 104.08,104.12))
+  scale_x_continuous(breaks = c(104.04, 104.08, 104.12))
+
+
 patchwork::wrap_plots(list(plot_before,plot_after))
 ```
 
@@ -111,7 +113,7 @@ example_museum =data.frame(
 
 # This step is for adjusting
 example2_adjusted = example_museum |> 
-  st_crs_adjust(, from = "gcj", to = "wgs")
+  st_crs_adjust(from = "gcj", to = "wgs")
 
 # Plots for comparison
 museum_before = ggplot()+
