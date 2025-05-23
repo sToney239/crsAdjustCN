@@ -83,7 +83,7 @@ patchwork::wrap_plots(list(plot_before,plot_after))
 
 Another example is a museum extent downloaded from [Amap](https://www.amap.com/), the coordinates used in this map is also in `gcj02` coordinate system. As you can see, after adjusting, the boundary of the museum fit to the surroundign better.
 
-```{r example}
+```{r, fig.width=6, fig.height=3, dpi=300}
 example_museum =data.frame(
   lon = c(104.028927,104.029536,104.030137,104.030167,104.030148,104.030056,104.030013,104.030116,104.030805,
           104.030901,104.031021,104.031118,104.031141,104.031059,104.031052,104.031079,104.031205,104.03144,104.031448,

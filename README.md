@@ -120,7 +120,7 @@ museum_after =  ggplot()+
 patchwork::wrap_plots(list(museum_before, museum_after))
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 As shown, after the adjustment, the museum’s boundary aligns more
 accurately with the surrounding area.
