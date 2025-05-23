@@ -108,12 +108,12 @@ example2_adjusted = example_museum |>
 
 museum_before = ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 14,progress ="none")+
-  geom_sf(data = example_museum,fill = "transparent",color = 'black',linetype = 2)+
+  geom_sf(data = example_museum,fill = "transparent",color = 'black',linetype = 2,linewidth = 1)+
   labs(title = "no adjusting")+
   scale_x_continuous(breaks = c( 104.027,104.029,104.031))
 museum_after =  ggplot()+
   ggspatial::annotation_map_tile(type = 'cartolight_nolabel',zoom = 14,progress ="none")+
-  geom_sf(data = example_museum |> st_crs_adjust(),fill = "transparent",color = 'black',linetype = 2)+
+  geom_sf(data = example_museum |> st_crs_adjust(),fill = "transparent",color = 'black',linetype = 2,linewidth = 1)+
   labs(title = "after adjusting")+
   scale_x_continuous(breaks = c(104.024, 104.026,104.028))
 
