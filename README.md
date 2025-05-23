@@ -13,8 +13,8 @@ China and WGS 84, especially for `sf` objects.
 
 The main features of this package are:
 
-- Some key functions with too many iterations implemented in C++,
-  therefor could have better performance
+- Some key functions implemented in C++, therefore could have better
+  performance
 - Specialization for transforming objects of the `sf` class.
 
 ## Installation
