@@ -1,26 +1,34 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # crsAdjustCN
 
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/sToney239/crsAdjustCN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sToney239/crsAdjustCN/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-`crsAdjustCN` is to transform between special coordinate systems in
-China and WGS 84, especially for `sf` objects.
+`crsAdjustCN` is to transform between special coordinate systems in China and WGS 84, especially for `sf` objects.
 
 The main features of this package are:
-
-- Some key functions with too many iterations implemented in C++,
-  therefor could have better performance
-- Specialization for transforming objects of the `sf` class.
+ 
+ - Some key functions with too many iterations implemented in C++, therefor could have better performance
+ - Specialization for transforming objects of the `sf` class.
 
 ## Installation
 
-You can install the development version of crsAdjustCN from
-[GitHub](https://github.com/sToney239/crsAdjustCN) with:
+You can install the development version of crsAdjustCN from [GitHub](https://github.com/sToney239/crsAdjustCN) with:
 
 ``` r
 # install.packages("devtools")
@@ -30,22 +38,15 @@ devtools::install_github("sToney239/crsAdjustCN")
 ## Example
 
 There is the core function in this package:
-
-``` r
+```{r,eval=FALSE}
 crsAdjustCN::st_crs_adjust(obj = your_sf_object, from = "gcj", to = "wgs")
 ```
 
-You can provide your `sf` class object and specify the `from` and `to`
-coordicates as arguments. (Please note this function currently supports
-only the geometry types: `POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`,
-`MULTILINESTRING` and `MULTIPOLYGON`)
+You can provide your `sf` class object and specify the `from` and `to` coordicates as arguments. (Please note this function currently supports only the geometry types: `POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`, `MULTILINESTRING` and `MULTIPOLYGON`)
 
-This example illustrates the adjustment method. The `example_car_trace`
-represents som sample points from car trace with coordinates in `gcj02.`
-The figure demonstrates that, without adjustment, the car trace log
-deviates from the roads, which could not be right.
+This example illustrates the adjustment method. The `example_car_trace` represents som sample points from car trace with coordinates in `gcj02.` The figure demonstrates that, without adjustment, the car trace log deviates from the roads, which could not be right. 
 
-``` r
+```{r, fig.width=6, fig.height=3, dpi=300}
 library(crsAdjustCN)
 library(ggplot2)
 rosm::register_tile_source(cartolight_nolabel = "http://a.basemaps.cartocdn.com/light_nolabels/${z}/${x}/${y}.png")
@@ -86,14 +87,9 @@ plot_after = ggplot()+
 patchwork::wrap_plots(list(plot_before,plot_after))
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+Another example is a museum extent downloaded from [Amap](https://www.amap.com/), the coordinates used in this map is also in `gcj02` coordinate system. As you can see, after adjusting, the boundary of the museum fit to the surroundign better.
 
-Another example is a museum extent downloaded from
-[Amap](https://www.amap.com/), the coordinates used in this map is also
-in `gcj02` coordinate system. As you can see, after adjusting, the
-boundary of the museum fit to the surroundign better.
-
-``` r
+```{r, fig.width=6, fig.height=3, dpi=300}
 example_museum =data.frame(
   lon = c(104.028927,104.029536,104.030137,104.030167,104.030148,104.030056,104.030013,104.030116,104.030805,
           104.030901,104.031021,104.031118,104.031141,104.031059,104.031052,104.031079,104.031205,104.03144,104.031448,
@@ -126,7 +122,5 @@ museum_after =  ggplot()+
 patchwork::wrap_plots(list(museum_before, museum_after))
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+As shown, after the adjustment, the museum's boundary aligns more accurately with the surrounding area.
 
-As shown, after the adjustment, the museum’s boundary aligns more
-accurately with the surrounding area.
