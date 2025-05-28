@@ -3,23 +3,27 @@
 #' @param obj A `sf` class object to be transformed
 #' @param from A string of the shortcut coordinate system name of `obj`, should be one of "gcj", "bd" and "wgs"
 #' @param to A string of the shortcut coordinate system name of the output, should be one of "gcj", "bd" and "wgs"
-#' @param accurate A logical scalar indicating whether to use a more accurate algorithm. \cr
+#' @param accurate A logical value (TRUE or FALSE) that indicates whether to use a more accurate algorithm. \cr
 #' The more accurate code is written in C++, theoretically it would be efficient. \cr
 #' However, if execution time is excessive, consider switching to `FALSE` to use a less accurate but faster mode.
+#' @param check_extent A logical value (TRUE or FALSE) that indicates whether to check if the input object is approximately within the extent of China. Setting this to FALSE can improve performance for large datasets, as the check will be skipped.
 #'
 #' @returns A `sf` class object, with modified geometry after transformation
 #' @export
 #'
 #' @examples test_point = cbind(data.frame(x = 1), sf::st_sfc(sf::st_point(c(120,36))))
 #' st_crs_adjust( sf::st_as_sf(test_point,crs = 4326))
-st_crs_adjust = function(obj, from = "gcj", to = "wgs", accurate = TRUE) {
+st_crs_adjust = function(obj, from = "gcj", to = "wgs", accurate = TRUE, check_extent = TRUE) {
   if (!sf::st_is_longlat(obj)) {
     obj = sf::st_transform(obj, "WGS84")
   }
-  check_within = all( sf::st_within(obj,sf::st_polygon(list(boundary_convex)),sparse=FALSE))
-  if (!check_within) {
-    stop("Input not within China Extent")
+  if (check_extent) {
+    check_within = all( sf::st_within(obj,sf::st_polygon(list(boundary_convex)),sparse=FALSE))
+    if (!check_within) {
+      stop("Input not within China Extent")
+    }
   }
+
   shift_fun = switch (paste0(from,"_",to),
                        "bd_gcj" = bd_gcj,
                        "bd_wgs" = ifelse(accurate, bd_wgs_accu, bd_wgs),

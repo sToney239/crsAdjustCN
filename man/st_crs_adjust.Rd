@@ -4,7 +4,13 @@
 \alias{st_crs_adjust}
 \title{Revert transformation of \code{sf} object among \code{gcj02}, \code{bd09} and \code{wgs} coordinate systems}
 \usage{
-st_crs_adjust(obj, from = "gcj", to = "wgs", accurate = TRUE)
+st_crs_adjust(
+  obj,
+  from = "gcj",
+  to = "wgs",
+  accurate = TRUE,
+  check_extent = TRUE
+)
 }
 \arguments{
 \item{obj}{A \code{sf} class object to be transformed}
@@ -13,9 +19,11 @@ st_crs_adjust(obj, from = "gcj", to = "wgs", accurate = TRUE)
 
 \item{to}{A string of the shortcut coordinate system name of the output, should be one of "gcj", "bd" and "wgs"}
 
-\item{accurate}{A logical scalar indicating whether to use a more accurate algorithm. \cr
+\item{accurate}{A logical value (TRUE or FALSE) that indicates whether to use a more accurate algorithm. \cr
 The more accurate code is written in C++, theoretically it would be efficient. \cr
 However, if execution time is excessive, consider switching to \code{FALSE} to use a less accurate but faster mode.}
+
+\item{check_extent}{A logical value (TRUE or FALSE) that indicates whether to check if the input object is approximately within the extent of China. Setting this to FALSE can improve performance for large datasets, as the check will be skipped.}
 }
 \value{
 A \code{sf} class object, with modified geometry after transformation
