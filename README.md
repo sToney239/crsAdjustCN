@@ -32,7 +32,8 @@ devtools::install_github("sToney239/crsAdjustCN")
 This is the core function in this package:
 
 ``` r
-crsAdjustCN::st_crs_adjust(obj = your_sf_object, from = "gcj", to = "wgs")
+chengdu = sf::read_sf("https://geo.datav.aliyun.com/areas_v3/bound/510100_full.json")
+crsAdjustCN::st_crs_adjust(chengdu)
 ```
 
 You can provide your `sf` class object and specify the `from` and `to`

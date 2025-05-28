@@ -38,8 +38,9 @@ devtools::install_github("sToney239/crsAdjustCN")
 ## Example
 
 This is the core function in this package:
-```{r,eval=FALSE}
-crsAdjustCN::st_crs_adjust(obj = your_sf_object, from = "gcj", to = "wgs")
+```{r, eval=FALSE}
+chengdu = sf::read_sf("https://geo.datav.aliyun.com/areas_v3/bound/510100_full.json")
+crsAdjustCN::st_crs_adjust(chengdu)
 ```
 
 You can provide your `sf` class object and specify the `from` and `to` coordicates as arguments. (Please note this function currently supports only the geometry types: `POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`, `MULTILINESTRING` and `MULTIPOLYGON`)
