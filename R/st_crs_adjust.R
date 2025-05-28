@@ -13,6 +13,13 @@
 #' @examples test_point = cbind(data.frame(x = 1), sf::st_sfc(sf::st_point(c(120,36))))
 #' st_crs_adjust( sf::st_as_sf(test_point,crs = 4326))
 st_crs_adjust = function(obj, from = "gcj", to = "wgs", accurate = TRUE) {
+  if (!sf::st_is_longlat(obj)) {
+    obj = sf::st_transform(obj, "WGS84")
+  }
+  check_within = all( sf::st_within(obj,sf::st_polygon(list(boundary_convex)),sparse=FALSE))
+  if (!check_within) {
+    stop("Input not within China Extent")
+  }
   shift_fun = switch (paste0(from,"_",to),
                        "bd_gcj" = bd_gcj,
                        "bd_wgs" = ifelse(accurate, bd_wgs_accu, bd_wgs),

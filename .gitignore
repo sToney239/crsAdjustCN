@@ -6,3 +6,4 @@
 .DS_Store
 .quarto
 rosm.cache/
+deprecated/
