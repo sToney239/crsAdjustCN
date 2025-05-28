@@ -29,22 +29,32 @@ devtools::install_github("sToney239/crsAdjustCN")
 
 ## Example
 
-This is the core function in this package:
+`st_crs_adjust()` is the core function in this package. You can provide
+your `sf` class object to this function and get the coordinates adjusted
+`sf` class object back.
 
 ``` r
 chengdu = sf::read_sf("https://geo.datav.aliyun.com/areas_v3/bound/510100_full.json")
 crsAdjustCN::st_crs_adjust(chengdu)
 ```
 
-You can provide your `sf` class object and specify the `from` and `to`
-coordicates as arguments. (Please note this function currently supports
-only the geometry types: `POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`,
+(Please note this function currently supports only the following
+geometry types: `POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`,
 `MULTILINESTRING` and `MULTIPOLYGON`)
 
-This example illustrates the adjustment method. The `example_car_trace`
-represents som sample points from car trace with coordinates in `gcj02.`
-The figure demonstrates that, without adjustment, the car trace log
-deviates from the roads, which could not be right.
+You can specify the `from` and `to` coordinates as arguments. Generally,
+if the data is derived from Amap or Google Maps (within China), the
+coordinates should be `gcj`. For data from Baidu Maps, the coordinates
+should be `bd`. If the data comes from OpenStreetMap, the coordinates
+should be `wgs` and require no adjustments.
+
+------------------------------------------------------------------------
+
+Here’s another example showing why you may need this coordinate
+adjustment. The `example_car_trace` represents som sample points from
+car trace with coordinates in `gcj02.` The figure demonstrates that,
+without adjustment, the car trace log deviates from the roads, which
+could not be right.
 
 ``` r
 library(crsAdjustCN)
